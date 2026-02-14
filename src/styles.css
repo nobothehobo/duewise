@@ -1,0 +1,263 @@
+:root {
+  --background: #f3f4f8;
+  --surface: #ffffff;
+  --text: #0d1526;
+  --accent: #4f6cff;
+  --danger: #ea3e5c;
+  --warning: #f4a621;
+  --success: #35b56a;
+  --muted: #6f7890;
+  --shadow-soft: 0 10px 30px rgba(20, 35, 90, 0.08);
+  --shadow-card: 0 12px 28px rgba(19, 35, 87, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+  background: radial-gradient(circle at top, #fbfcff 0%, var(--background) 65%);
+  color: var(--text);
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+}
+
+.app-shell {
+  width: min(840px, 100%);
+  padding: 1rem 1rem 4rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.hero,
+.next-up,
+.form-section,
+.list-section {
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  box-shadow: var(--shadow-soft);
+  padding: 1.1rem;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+h1 {
+  margin-top: 0.35rem;
+  font-size: clamp(1.5rem, 3.8vw, 2rem);
+}
+
+.hero p {
+  margin-top: 0.5rem;
+  color: var(--muted);
+}
+
+.eyebrow {
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+}
+
+.next-up h2,
+.form-section h2,
+.list-section h2 {
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+form {
+  display: grid;
+  gap: 0.85rem;
+}
+
+label {
+  display: grid;
+  gap: 0.3rem;
+  font-size: 0.86rem;
+  color: var(--muted);
+}
+
+input,
+select,
+button {
+  font: inherit;
+}
+
+input,
+select {
+  border-radius: 14px;
+  border: 1px solid #d8deef;
+  padding: 0.72rem 0.85rem;
+  background: #fff;
+  color: var(--text);
+}
+
+input:focus,
+select:focus,
+button:focus {
+  outline: 2px solid color-mix(in srgb, var(--accent) 45%, white);
+  outline-offset: 2px;
+}
+
+.split-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+}
+
+.form-actions,
+.task-actions {
+  display: flex;
+  gap: 0.55rem;
+}
+
+button {
+  border: none;
+  border-radius: 12px;
+  padding: 0.62rem 0.95rem;
+  background: var(--accent);
+  color: white;
+  font-weight: 600;
+  transition: transform 120ms ease, opacity 120ms ease;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+button.secondary {
+  background: #e8ecf8;
+  color: #445071;
+}
+
+.task-list {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.task-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.85rem;
+  background: var(--surface);
+  padding: 0.9rem;
+  border-radius: 18px;
+  border: 1px solid #e3e8f6;
+  box-shadow: var(--shadow-card);
+  transition: transform 150ms ease;
+}
+
+.task-card.compact {
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, #d4ddff);
+}
+
+.task-card:active {
+  transform: translateY(1px);
+}
+
+.task-card-main {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.task-card-header {
+  display: flex;
+  gap: 0.45rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-meta {
+  color: var(--muted);
+  font-size: 0.81rem;
+}
+
+.task-metrics {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 0.87rem;
+  font-weight: 500;
+}
+
+.task-card-side {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.priority-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 0.3rem 0.58rem;
+}
+
+.priority-1 { background: #e8f8ef; color: #238852; }
+.priority-2 { background: #fff5de; color: #a77200; }
+.priority-3 { background: #ffe4e8; color: #b31e43; }
+
+.urgency-ring {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.urgency-ring svg {
+  position: absolute;
+  inset: 0;
+  transform: rotate(-90deg);
+}
+
+.ring-track,
+.ring-progress {
+  fill: none;
+  stroke-width: 5;
+}
+
+.ring-track { stroke: #e8ecf8; }
+.ring-progress {
+  stroke: var(--accent);
+  stroke-linecap: round;
+}
+
+.task-card.critical { border-left: 4px solid var(--danger); }
+.task-card.urgent { border-left: 4px solid var(--warning); }
+.task-card.safe { border-left: 4px solid var(--success); }
+.task-card.completed {
+  opacity: 0.72;
+}
+
+.empty-state {
+  color: var(--muted);
+  text-align: center;
+  padding: 1rem;
+}
+
+@media (min-width: 700px) {
+  .app-shell {
+    padding-top: 2rem;
+  }
+
+  .task-card {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
+}

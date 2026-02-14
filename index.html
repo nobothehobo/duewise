@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DueWise</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell" id="app-shell">
+      <header class="hero" role="banner">
+        <div>
+          <p class="eyebrow">DueWise</p>
+          <h1>Plan smarter against the clock.</h1>
+          <p>Prioritized by time remaining vs effort needed.</p>
+        </div>
+        <button id="theme-toggle" class="ghost-btn" type="button" aria-label="Toggle theme">🌙</button>
+      </header>
+
+      <section class="next-up" aria-labelledby="next-up-heading">
+        <h2 id="next-up-heading">Work on Next</h2>
+        <div id="next-task-container" aria-live="polite"></div>
+      </section>
+
+      <section class="list-section" aria-labelledby="task-list-heading">
+        <div class="section-row">
+          <h2 id="task-list-heading">Tasks</h2>
+          <button id="add-task-btn" type="button">Add Task</button>
+        </div>
+        <div id="task-list-container" class="task-list" aria-live="polite"></div>
+      </section>
+
+      <section id="load-fallback" class="fallback hidden" role="status" aria-live="assertive">
+        App failed to load—see debug panel.
+      </section>
+    </div>
+
+    <div id="task-modal" class="modal hidden" aria-hidden="true">
+      <div id="modal-backdrop" class="modal-backdrop"></div>
+      <section class="modal-sheet" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="sheet-handle" aria-hidden="true"></div>
+        <div class="section-row modal-header">
+          <h3 id="modal-title">Add Task</h3>
+          <button id="close-modal-btn" class="ghost-btn" type="button" aria-label="Close">✕</button>
+        </div>
+        <form id="task-form" class="task-form">
+          <input type="hidden" id="task-id" />
+          <label>
+            Title
+            <input id="task-title" type="text" required maxlength="120" placeholder="Design review prep" />
+          </label>
+          <label>
+            Due date & time
+            <input id="task-due-date" type="datetime-local" required />
+          </label>
+          <div class="split-grid">
+            <label>
+              Minutes needed
+              <input id="task-minutes" type="number" min="5" step="5" required />
+            </label>
+            <label>
+              Importance
+              <select id="task-importance">
+                <option value="">None</option>
+                <option value="1">1 · Low</option>
+                <option value="2">2 · Medium</option>
+                <option value="3">3 · High</option>
+              </select>
+            </label>
+          </div>
+          <div class="form-actions">
+            <button id="save-task-btn" type="submit">Save Task</button>
+            <button id="delete-task-btn" class="danger-btn hidden" type="button">Delete</button>
+          </div>
+        </form>
+      </section>
+    </div>
+
+    <aside id="debug-overlay" class="debug-overlay" aria-live="polite">
+      <h3>Debug</h3>
+      <ul id="debug-list">
+        <li>No runtime errors.</li>
+      </ul>
+    </aside>
+
+    <noscript>
+      <div class="noscript-notice">JavaScript is required. App failed to load—see debug panel.</div>
+    </noscript>
+
+    <script src="./app.js" defer></script>
+  </body>
+</html>
